@@ -3,10 +3,10 @@ import mongoose from 'mongoose';
 
 //custom module
 import config from '@/config';
+import { logger } from '@/lib/winston';
 
 //types
 import type { ConnectOptions } from 'mongoose';
-import e from 'express';
 
 //client option
 
@@ -27,7 +27,7 @@ export const connectToDatabase = async (): Promise<void> => {
 
   try {
     await mongoose.connect(config.MONGO_URI, clientOptions);
-    console.log('Connected to the database successfully', {
+    logger.info('Connected to the database successfully', {
       uri: config.MONGO_URI,
       options: clientOptions,
     });
@@ -36,15 +36,15 @@ export const connectToDatabase = async (): Promise<void> => {
       throw error;
     }
 
-    console.log('Error connecting to the database', error);
+    logger.error('Error connecting to the database', error);
   }
 };
 
 //disconects from the MongoDB database using Mongoose
-export const disconectFromDatabase = async (): Promise<void> => {
+export const disconnectFromDatabase = async (): Promise<void> => {
   try {
     await mongoose.disconnect();
-    console.log('Disconected from the database successfully.', {
+    logger.info('Disconected from the database successfully.', {
       uri: config.MONGO_URI,
       options: clientOptions,
     });
@@ -53,6 +53,6 @@ export const disconectFromDatabase = async (): Promise<void> => {
       throw new Error(error.message);
     }
 
-    console.log('Error disconecting from the database', error);
+    logger.error('Error disconecting from the database', error);
   }
 };

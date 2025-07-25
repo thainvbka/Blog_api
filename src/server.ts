@@ -7,7 +7,8 @@ import helmet from 'helmet';
 //custom modules
 import config from '@/config';
 import limiter from '@/lib/express.rate_limit';
-import { connectToDatabase, disconectFromDatabase } from '@/lib/mongoose';
+import { connectToDatabase, disconnectFromDatabase } from '@/lib/mongoose';
+import { logger } from '@/lib/winston';
 
 //router
 import v1Routes from '@/routes/v1';
@@ -27,7 +28,7 @@ const corsOptions: CorsOptions = {
         new Error(`CORS error: ${origin} is not allowed by CORS`),
         false,
       );
-      console.log(`CORS error: ${origin} is not allowed by CORS`);
+      logger.warn(`CORS error: ${origin} is not allowed by CORS`);
     }
   },
 };
@@ -62,10 +63,10 @@ app.use(limiter);
     app.use('/api/v1', v1Routes);
 
     app.listen(config.PORT, () => {
-      console.log(`Server running: http://localhost:${config.PORT}`);
+      logger.info(`Server running: http://localhost:${config.PORT}`);
     });
   } catch (error) {
-    console.log('Failed to start the server', error);
+    logger.error('Failed to start the server', error);
 
     if (config.NODE_ENV === 'production') {
       process.exit(1);
@@ -75,11 +76,11 @@ app.use(limiter);
 //xử lý tắt server một cách an toàn khi ứng dụng nhận tín hiệu dừng như SIGINT (Ctrl+C) hoặc SIGTERM (do hệ thống gửi, ví dụ Heroku hoặc Docker khi scale down).
 const handleServerShutdown = async () => {
   try {
-    await disconectFromDatabase();
-    console.log('Server SHUTDOWN');
+    await disconnectFromDatabase();
+    logger.warn('Server SHUTDOWN');
     process.exit(0);
   } catch (error) {
-    console.log('Error during server shutdown', error);
+    logger.error('Error during server shutdown', error);
   }
 };
 
