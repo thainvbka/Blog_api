@@ -4,16 +4,22 @@ import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import helmet from 'helmet';
 
-//custom modules
+/**
+ * custom modules
+ */
 import config from '@/config';
 import limiter from '@/lib/express.rate_limit';
 import { connectToDatabase, disconnectFromDatabase } from '@/lib/mongoose';
 import { logger } from '@/lib/winston';
 
-//router
+/**
+ * router
+ */
 import v1Routes from '@/routes/v1';
 
-//types
+/**
+ * types
+ */
 import type { CorsOptions } from 'cors';
 
 const app = express();
