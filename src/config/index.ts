@@ -20,6 +20,8 @@ const config = {
   ACCESS_TOKEN_EXPIRY: process.env.ACCESS_TOKEN_EXPIRY as ms.StringValue, //Ép kiểu sang định dạng chuỗi mà thư viện ms chấp nhận ('15m',...)
   REFRESH_TOKEN_EXPIRY: process.env.REFRESH_TOKEN_EXPIRY as ms.StringValue,
   WHITELIST_ADMINS_MAIL: ['nvthai2904@gmail.com', 'pe909287g@gmail.com'],
+  defaultResLimit: 20,
+  defaultResOffset: 0,
 };
 
 export default config;
