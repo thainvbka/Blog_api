@@ -11,7 +11,7 @@ import User from '@/models/user';
 /**
  * types
  */
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 
 const getUser = async (req: Request, res: Response): Promise<void> => {
   try {

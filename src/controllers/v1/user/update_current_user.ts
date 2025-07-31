@@ -6,7 +6,7 @@ import { logger } from '@/lib/winston';
 /**
  * types
  */
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 
 /**
  * models

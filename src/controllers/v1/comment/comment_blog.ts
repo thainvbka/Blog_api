@@ -62,8 +62,8 @@ const commentBlog = async (req: Request, res: Response) => {
       commentsCount: blog.commentsCount,
     });
 
-    res.status(200).json({
-      commentsCount: blog.commentsCount,
+    res.status(201).json({
+      comment: newComment,
     });
   } catch (error) {
     res.status(500).json({
