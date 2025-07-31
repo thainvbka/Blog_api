@@ -2,7 +2,6 @@
  * node modules
  */
 import { Schema, model, Types } from 'mongoose';
-import { ref } from 'process';
 
 interface ILike {
   blogId?: Types.ObjectId;
