@@ -22,6 +22,7 @@ import uploadBlogBanner from '@/middlewares/upload_blog_banner';
  */
 import createBlog from '@/controllers/v1/blog/create_blog';
 import getAllBlog from '@/controllers/v1/blog/get_all_blog';
+import getBlogByUser from '@/controllers/v1/blog/get_blog_by_user';
 
 const upload = multer();
 const router = Router();
@@ -61,5 +62,22 @@ router.get(
     .withMessage('Offset must be a positive integer'),
   validationError,
   getAllBlog,
+);
+
+router.get(
+  '/user/:userId',
+  authenticate,
+  authorize(['admin', 'user']),
+  param('userId').isMongoId().withMessage('Invarlid user ID'),
+  query('limit')
+    .optional()
+    .isInt({ min: 1, max: 50 })
+    .withMessage('Limit must be between 1 to 50'),
+  query('offset')
+    .optional()
+    .isInt({ min: 0 })
+    .withMessage('Offset must be a positive integer'),
+  validationError,
+  getBlogByUser,
 );
 export default router;
