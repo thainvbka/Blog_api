@@ -41,7 +41,7 @@ const getAllUser = async (req: Request, res: Response): Promise<void> => {
       error: error,
     });
 
-    logger.error('Error while getting all user', error);
+    logger.error('Error while getting all users', error);
   }
 };
 
