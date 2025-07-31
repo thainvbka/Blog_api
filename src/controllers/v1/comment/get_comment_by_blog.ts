@@ -29,7 +29,7 @@ const getCommentsByBlog = async (
       return;
     }
     const allComments = await Comment.find({ blogId })
-      .sort({ createAt: -1 })
+      .sort({ createdAt: -1 })
       .lean()
       .exec();
 
