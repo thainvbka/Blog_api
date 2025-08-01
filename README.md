@@ -15,12 +15,17 @@ Blog API là một RESTful API được xây dựng bằng Node.js, Express và 
 
 ## Công nghệ sử dụng
 
-- Node.js, Express.js
-- MongoDB (Mongoose)
-- TypeScript
-- JWT, bcrypt
-- Cloudinary
-- Prettier, ESLint
+- Node.js >= 18.x
+- TypeScript ^5.8.3
+- Express.js ^5.1.0
+- MongoDB (Mongoose) ^8.16.4
+- JWT (jsonwebtoken) ^9.0.2, bcrypt ^6.0.0
+- Cloudinary ^2.7.0
+- express-rate-limit ^8.0.1, express-validator ^7.2.1
+- Helmet ^8.1.0, CORS ^2.8.5, compression ^1.8.1
+- Multer ^2.0.2 (upload file)
+- Winston ^3.17.0 (logging)
+- Prettier ^3.6.2, ESLint (format/lint)
 
 ## Cấu trúc thư mục
 
